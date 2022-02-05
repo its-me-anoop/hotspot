@@ -1,45 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotspot/bloc/bloc_observer.dart';
-import 'package:hotspot/bloc/page_bloc.dart';
-import 'package:hotspot/cubit/theme_cubit.dart';
-import 'package:hotspot/views/home_view.dart';
+import 'package:hotspot/constants/dark_theme.dart';
+import 'package:hotspot/constants/light_theme.dart';
+import 'package:hotspot/logic/counter_logic.dart';
+import 'package:hotspot/logic/make_a_prayer.dart';
+import 'package:hotspot/logic/page_selection_logic.dart';
+import 'package:hotspot/logic/theme_logic.dart';
+import 'package:hotspot/views/home_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  BlocOverrides.runZoned(
-    () => runApp(const MyApp()),
-    blocObserver: AppBlocObserver(),
-  );
-}
-
-class App extends StatelessWidget {
-  /// {@macro app}
-  const App({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ThemeCubit(),
+  runApp(
+    /// Providers are above [MyApp] instead of inside it, so that tests
+    /// can use [MyApp] while mocking the providers
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Counter()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => PageSelection()),
+        ChangeNotifierProvider(create: (_) => MakeAPrayer()),
+      ],
       child: const MyApp(),
-    );
-  }
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hotspot',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
-      home: BlocProvider(
-        create: (context) => PageBloc(),
-        child: const HomeView(),
-      ),
+    return Consumer<ThemeProvider>(
+      builder: (context, ThemeProvider themeData, child) {
+        return MaterialApp(
+          theme: (themeData.theme) ? darkTheme : lightTheme,
+          debugShowCheckedModeBanner: false,
+          home: const MyHomePage(),
+        );
+      },
     );
   }
 }

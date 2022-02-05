@@ -7,7 +7,9 @@ List<Prayer> prayers = [
       "Please pray for the speedy recovery of my friend and all those who are suffering from covid",
       false,
       "jes",
-      ["sam"]),
+      ["sam", "jes"]),
   Prayer("Pray for world peace and for all the intentions of the Holy Father",
       false, "emma", ["sam"]),
+  Prayer("Pray for world peace and for all the intentions of the Holy Father",
+      false, "emma", ["jes"]),
 ];
