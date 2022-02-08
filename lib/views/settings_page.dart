@@ -31,28 +31,40 @@ class DeveloperInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      visualDensity: VisualDensity.standard,
-      title: Text(
-        "Developer",
-        style: Theme.of(context).textTheme.headline5,
-      ),
-      subtitle: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Flutterly Ltd",
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            Text(
-              "anoop@flutterly.co.uk",
-              style: Theme.of(context).textTheme.bodyText2,
+        title: Text(
+          "Developer",
+          style: Theme.of(context).textTheme.headline5,
+        ),
+        subtitle: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          //padding: EdgeInsets.zero,
+          children: const [
+            ListTile(
+              title: Text('Anoop Jose'),
+              subtitle: Text(
+                  '\nApp Developer \nFlutterly Ltd\nanoop@flutterly.co.uk'),
             ),
           ],
-        ),
-      ),
-    );
+        )
+
+        // subtitle: Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       Text(
+        //         "Flutterly Ltd",
+        //         style: Theme.of(context).textTheme.bodyText1,
+        //       ),
+        //       Text(
+        //         "anoop@flutterly.co.uk",
+        //         style: Theme.of(context).textTheme.bodyText2,
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        );
   }
 }
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hotspot/constants/current_user.dart';
 import 'package:hotspot/logic/make_a_prayer.dart';
+import 'package:hotspot/logic/prayer_request_form_launch.dart';
 import 'package:hotspot/sample/prayer_list.dart';
 import 'package:hotspot/sample/user_list.dart';
+import 'package:hotspot/views/prayer_request_form.dart';
 import 'package:provider/provider.dart';
 
 class PrayerRequestView extends StatelessWidget {
@@ -12,21 +14,30 @@ class PrayerRequestView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.separated(
-          itemBuilder: (_, index) {
-            return PrayerView(
-              index: index,
-            );
-          },
-          separatorBuilder: (_, index) {
-            return const Divider();
-          },
-          itemCount: prayers.length),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        child: Icon(Icons.add),
-      ),
+    return Consumer<PrayerRequestFormLaunch>(
+      builder: (context, PrayerRequestFormLaunch status, child) {
+        return (status.prayerRequestFormStatus)
+            ? PrayerRequestForm()
+            : Scaffold(
+                body: ListView.separated(
+                    cacheExtent: 1000,
+                    itemBuilder: (_, index) {
+                      return PrayerView(
+                        index: index,
+                      );
+                    },
+                    separatorBuilder: (_, index) {
+                      return const Divider();
+                    },
+                    itemCount: prayers.length),
+                floatingActionButton: FloatingActionButton(
+                  onPressed: () => {
+                    context.read<PrayerRequestFormLaunch>().openPrayerRequest(),
+                  },
+                  child: const Icon(Icons.add),
+                ),
+              );
+      },
     );
   }
 }

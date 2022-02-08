@@ -4,6 +4,8 @@ import 'package:hotspot/constants/light_theme.dart';
 import 'package:hotspot/logic/counter_logic.dart';
 import 'package:hotspot/logic/make_a_prayer.dart';
 import 'package:hotspot/logic/page_selection_logic.dart';
+import 'package:hotspot/logic/prayer_request_form_launch.dart';
+import 'package:hotspot/logic/thank_you_form_launch.dart';
 import 'package:hotspot/logic/theme_logic.dart';
 import 'package:hotspot/views/home_page.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +20,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => PageSelection()),
         ChangeNotifierProvider(create: (_) => MakeAPrayer()),
+        ChangeNotifierProvider(create: (_) => PrayerRequestFormLaunch()),
+        ChangeNotifierProvider(create: (_) => ThankYouFormLaunch()),
       ],
       child: const MyApp(),
     ),
