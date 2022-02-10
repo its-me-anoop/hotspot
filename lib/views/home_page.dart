@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hotspot/logic/page_selection_logic.dart';
 import 'package:hotspot/views/prayer_request_view.dart';
 import 'package:hotspot/views/profile_view.dart';
-import 'package:hotspot/views/saint_view.dart';
 import 'package:hotspot/views/settings_page.dart';
 import 'package:hotspot/views/thanks_giving_view.dart';
 import 'package:provider/provider.dart';

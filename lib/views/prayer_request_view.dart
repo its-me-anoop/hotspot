@@ -167,7 +167,7 @@ class PrayerRequestView extends StatelessWidget {
                                                                     sigmaX: 15,
                                                                     sigmaY: 15),
                                                             child: Container(
-                                                              decoration: BoxDecoration(
+                                                              decoration: const BoxDecoration(
                                                                   borderRadius:
                                                                       BorderRadius.all(
                                                                           Radius.circular(
